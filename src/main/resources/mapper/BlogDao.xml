@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lhhh.dao.BlogDao">
+
+
+
+    <resultMap id="BlogMap" type="com.lhhh.bean.Blog">
+        <id column="id" property="id"></id>
+        <association property="type" column="type_id" select="com.lhhh.dao.TypeDao.findById"/>
+        <collection property="tags" column="id" select="com.lhhh.dao.TagDao.findByBlogId"/>
+        <collection property="comments" column="id" select="com.lhhh.dao.CommentDao.findByBlogId"/>
+    </resultMap>
+    <select id="findByPage" resultMap="BlogMap">
+        select * from t_blog  where 1= 1
+        <if test="recommend!=null">and recommend=#{recommend}</if>
+        <if test="title!=null and typeId!=''">and title like CONCAT('%',#{title},'%')</if>
+        <if test="typeId!=null and typeId!=''">and type_id=#{typeId}</if>
+        order by update_time desc
+    </select>
+    <select id="findById" resultMap="BlogMap">
+        select * from t_blog where id=#{id}
+    </select>
+
+    <select id="findByTypeId" resultMap="BlogMap">
+        select * from t_blog where type_id=#{id} order by create_time desc
+    </select>
+    <select id="findByTagId" resultMap="BlogMap">
+        SELECT * from t_blog where id in (select blogs_id from t_blog_tags where tags_id=#{id})
+    </select>
+
+</mapper>

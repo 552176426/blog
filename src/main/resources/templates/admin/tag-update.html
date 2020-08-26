@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" th:href="@{/css/me.css}">
+    <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="../../static/lib/editormd/editormd.min.js"></script>
+    <title>更新标签</title>
+</head>
+<body>
+
+
+<!--导航-->
+<nav class="ui inverted attached segment m-padded-tb-mini m-opacity-tiny ">
+    <div class="ui container">
+        <div class="ui inverted stackable secondary menu">
+            <a href="#"><h2 class="ui teal header item">管理后台</h2></a>
+            <a th:href="@{/admin/blogs/1}" class="item m-mobile-hide"><i class="mini home icon"></i>&nbsp 博客</a>
+            <a th:href="@{/admin/types/1}" class="m-item item m-mobile-hide"><i class="mini idea icon"></i>&nbsp分类</a>
+            <a th:href="@{/admin/tags/1}" class="active orange m-item item m-mobile-hide"><i class="mini tags icon"></i>&nbsp 标签</a>
+
+            <div class="ui inverted horizontal m-item m-mobile-hide right menu">
+                <div class="ui dropdown item">
+                    <div class="text">
+                        <img src="https://picsum.photos/id/0/100/100" class="ui avatar image">
+                        刘志文
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" th:href="@{/admin/logout}" class="item">注销</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-mobile-show m-top-right">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+<div class="ui attached menu">
+    <div class="ui right aligned container">
+        <div class="right menu">
+            <a href="#" class="active orange item">修改</a>
+            <a th:href="@{/admin/tags/1}" class="item">列表</a>
+        </div>
+
+    </div>
+
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<!--中间内容-->
+<div class="m-container-small m-padded-tb-big">
+    <div class="ui container">
+        <form th:action="@{/admin/tags/update/{id}/submit(id=${tag.id})}" method="post" class="ui form">
+
+
+            <div class="field">
+                <div class="ui m-margin-bottom-small left labeled input">
+                    <label class="ui orange basic label">名称</label>
+                    <input type="text" placeholder="请输入标签名称" th:attr="placeholder=${tag.name}" name="name">
+                </div>
+            </div>
+
+
+
+            <div class="ui mini error message"></div>
+            <div class="ui mini negative message" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></div>
+            <div class="ui right aligned container">
+                <button class="ui button" type="button" onclick="window.history.go(-1)">返回</button>
+                <button class="ui teal button">提交</button>
+            </div>
+
+
+        </form>
+
+    </div>
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+<!--底部-->
+<footer class="ui inverted vertical segment m-padded-tb-small m-opacity-tiny">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided grid">
+
+            <div class="six wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced">联系我</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item"><i class="envelope icon"></i>&nbsp&nbsp&nbsp:&nbsp&nbsp&nbsplhhh_dp@163.com</a>
+                    <a href="#" class="item"><i class="wechat icon"></i>&nbsp&nbsp&nbsp:&nbsp&nbsp&nbsp 552176426</a>
+                </div>
+            </div>
+            <div class="ten wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced">Blog</h4>
+                <div class="ui inverted link list">
+                    <p class="item m-text-thin m-text-spaced m-opacity-mini">
+                        这是我的个人博客，会分享关于编程、写作、思考相关的任何内容，希望可以给到这儿的人有所帮助...</p>
+
+                </div>
+                <span id="momk" class="m-text-thin m-text-spaced"></span>
+            </div>
+        </div>
+        <div class="ui inverted secontion divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2019 - 2020 LhhhBlob Designed by Lhhh </p>
+    </div>
+
+</footer>
+<!--时间-->
+<script type="text/javascript">
+
+    function NewDate(str) {
+        str = str.split('-');
+        var date = new Date();
+        date.setUTCFullYear(str[0], str[1] - 1, str[2]);
+        date.setUTCHours(0, 0, 0, 0);
+        return date;
+    }
+    function momxc() {
+        var birthDay =NewDate("2020-6-24");
+        var today=new Date();
+        var timeold=today.getTime()-birthDay.getTime();
+        var sectimeold=timeold/1000
+        var secondsold=Math.floor(sectimeold);
+        var msPerDay=24*60*60*1000; var e_daysold=timeold/msPerDay;
+        var daysold=Math.floor(e_daysold);
+        var e_hrsold=(daysold-e_daysold)*-24;
+        var hrsold=Math.floor(e_hrsold);
+        var e_minsold=(hrsold-e_hrsold)*-60;
+        var minsold=Math.floor((hrsold-e_hrsold)*-60); var seconds=Math.floor((minsold-e_minsold)*-60).toString();
+        document.getElementById("momk").innerHTML = "本站已安全运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+        setTimeout(momxc, 1000);
+    }momxc();
+
+
+    $(".menu.toggle").click(function () {
+        $(".m-item").toggleClass("m-mobile-hide");
+    })
+</script>
+
+<script>
+
+
+
+    $('.ui.form').form({
+        fields: {
+            title: {
+                identifier: 'name',
+                rules: [{
+                    type: 'empty',
+                    prompt: '名称不能为空'
+                }]
+            }
+        }
+    })
+
+    $('#payButton').popup({
+        popup: $('.payQR'),
+        on: 'click',
+        position: 'top center'
+    });
+
+    $(".menu.toggle").click(function () {
+        $(".m-item").toggleClass("m-mobile-hide");
+    });
+</script>
+<script>
+    $(".dropdown").dropdown();
+    $(".selection").dropdown();
+</script>
+</body>
+
+</html>

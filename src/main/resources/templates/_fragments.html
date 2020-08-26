@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/animate.css" th:href="@{/css/animate.css}">
+    <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/css/typo.css}">
+    <link rel="stylesheet" href="../static/lib/prism/prism.css" th:href="@{/lib/prism/prism.css}"></link>
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}"></link>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <title th:replace="${title}">fragments</title>
+</head>
+<body>
+
+<!--导航-->
+<nav th:fragment="menu(n)" class="ui inverted padded attached segment m-padded-tb-mini m-opacity-tiny">
+    <div class="ui container">
+        <div class="ui inverted stackable secondary menu">
+            <a th:href="@{/}"><h2 class="ui teal header item">Lhhh Blob</h2></a>
+            <a th:href="@{/}" class="m-item item m-mobile-hide" th:classappend="${n==1}?'active orange'"><i class="mini home icon"></i>&nbsp 首页</a>
+            <a th:href="@{/type/}" class="m-item item m-mobile-hide" th:classappend="${n==2}?'active orange'"><i class="mini idea icon"></i>&nbsp分类</a>
+            <a th:href="@{/tag/}" class="m-item item m-mobile-hide" th:classappend="${n==3}?'active orange'"><i class="mini tags icon"></i>&nbsp 标签</a>
+            <a th:href="@{/archives}" class="m-item item m-mobile-hide" th:classappend="${n==4}?'active orange'"><i class="mini time icon"></i>&nbsp 时间轴</a>
+            <!--<a href="#" class="m-item item m-mobile-hide" th:classappend="${n==5}?'active orange'"><i class="mini pencil alternate icon"></i>&nbsp 留言板</a>-->
+            <a th:href="@{/aboutMe}" class="m-item item m-mobile-hide" th:classappend="${n==6}?'active orange'"><i class="mini info icon"></i>&nbsp关于我</a>
+            <!--<div class="right m-item item m-mobile-hide">
+                <div class="ui icon inverted transparent input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>-->
+        </div>
+    </div>
+
+    <a href="#" class="ui menu toggle black icon button m-mobile-show m-top-right">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+
+
+<!--底部-->
+<footer th:fragment="foot" class="ui inverted vertical segment m-padded-tb-small m-opacity-tiny">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided grid">
+
+            <div class="six wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced">联系我</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item"><i class="envelope icon"></i>&nbsp&nbsp&nbsp:&nbsp&nbsp&nbsplhhh_dp@163.com</a>
+                    <a href="#" class="item"><i class="wechat icon"></i>&nbsp&nbsp&nbsp:&nbsp&nbsp&nbsp 552176426</a>
+                </div>
+            </div>
+            <div class="ten wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced">Blog</h4>
+                <div class="ui inverted link list">
+                    <p class="item m-text-thin m-text-spaced m-opacity-mini">
+                        这是我的个人博客，会分享关于编程、写作、思考相关的任何内容，希望可以给到这儿的人有所帮助...</p>
+
+                </div>
+                <span id="momk" class="m-text-thin m-text-spaced"></span>
+            </div>
+        </div>
+        <div class="ui inverted secontion divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2019 - 2020 LhhhBlob Designed by Lhhh </p>
+    </div>
+
+</footer>
+</body>
+<!--时间-->
+<script th:fragment="time" type="text/javascript">
+
+    function NewDate(str) {
+        str = str.split('-');
+        var date = new Date();
+        date.setUTCFullYear(str[0], str[1] - 1, str[2]);
+        date.setUTCHours(0, 0, 0, 0);
+        return date;
+    }
+    function momxc() {
+        var birthDay =NewDate("2020-6-24");
+        var today=new Date();
+        var timeold=today.getTime()-birthDay.getTime();
+        var sectimeold=timeold/1000
+        var secondsold=Math.floor(sectimeold);
+        var msPerDay=24*60*60*1000; var e_daysold=timeold/msPerDay;
+        var daysold=Math.floor(e_daysold);
+        var e_hrsold=(daysold-e_daysold)*-24;
+        var hrsold=Math.floor(e_hrsold);
+        var e_minsold=(hrsold-e_hrsold)*-60;
+        var minsold=Math.floor((hrsold-e_hrsold)*-60); var seconds=Math.floor((minsold-e_minsold)*-60).toString();
+        document.getElementById("momk").innerHTML = "本站已安全运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+        setTimeout(momxc, 1000);
+    }momxc();
+
+
+    /*$(".menu.toggle").click(function () {
+        $(".m-item").toggleClass("m-mobile-hide");
+    })*/
+</script>
+</html>

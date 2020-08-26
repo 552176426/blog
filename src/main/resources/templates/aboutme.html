@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments :: head(~{::title})">
+    <title>分类</title>
+</head>
+<body>
+
+<!--导航-->
+<nav th:replace="_fragments :: menu(6)">
+</nav>
+
+
+<!--中间内容-->
+<div class="m-container m-padded-tb-big">
+
+    <div class="ui container">
+        <div class="ui stackable grid">
+
+            <div class="eleven wide column">
+                <div class="ui segment">
+                    <img src="https://picsum.photos/id/0/800/600" alt="" class=" ui rounded image">
+                </div>
+            </div>
+
+            <div class="five wide column">
+                <div class="ui top attached segment">
+                    <h4 class="ui header">关于我</h4>
+                </div>
+                <div class="ui attached segment ">
+                    <p class="m-text">我的介绍 我的介绍 我的介绍 我的介绍 我的介绍 我的介绍 我的介绍 我的介绍 我的介绍 我的介绍</p>
+                    <p class="m-text">热爱编程，喜欢折腾，正在探索高效学习编程的方法...</p>
+                </div>
+                <div class="ui attached segment">
+                    <div class="ui orange basic label">编程</div>
+                    <div class="ui orange basic label">游戏</div>
+                    <div class="ui orange basic label">写作</div>
+                    <div class="ui orange basic label">思考</div>
+                </div>
+                <div class="ui attached segment ">
+                    <div class="ui teal basic label m-margin-bottom-small">java</div>
+                    <div class="ui teal  basic label m-margin-bottom-small">JavaScript</div>
+                    <div class="ui teal  basic label m-margin-bottom-small">Mysql</div>
+                    <div class="ui teal  basic label m-margin-bottom-small">Html</div>
+                    <div class="ui teal  basic label m-margin-bottom-small">Redis</div>
+                </div>
+                <div class="ui bottom attached segment">
+                    <a href="https://github.com/552176426" class="ui circular icon button" data-content="点击跳转Github" id="github"><i class="github icon"></i></a>
+                    <a class="ui circular icon button" id="weixin"><i class="weixin icon"></i></a>
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin=552176426&site=qq&menu=yes" target="_blank" class="ui circular icon button" data-content="点击跳转qq" id="qq"><i class="qq icon"></i></a>
+                    <a href="https://weibo.com/u/5152118961?is_all=1" class="ui circular icon button " data-content="点击跳转微博" id="weibo"><i class="weibo icon"></i></a>
+                </div>
+
+                <div class="ui weixin flowing popup transition hidden">
+
+                        <div class="ui images" style="font-size: inherit !important;">
+                            <div class="image">
+                                <img src="../static/images/wechat.jpg" alt="" class="ui rounded bordered image" width="120px">
+                            </div>
+                        </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    <br>
+    <br>
+<!--底部-->
+<footer th:replace="_fragments :: foot"></footer>
+
+<script>
+
+    $('#github').popup();
+    $('#qq').popup();
+    $('#weibo').popup();
+    $('#weixin').popup({
+        popup : $('.weixin.popup'),
+        on : 'hover',
+        position : 'top center'
+    });
+
+    $(".menu.toggle").click(function () {
+        $(".m-item").toggleClass("m-mobile-hide");
+    })
+</script>
+<script th:replace="_fragments::time"></script>
+</body>
+
+</html>
